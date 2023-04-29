@@ -4,12 +4,15 @@ import { Button, Modal, Form, Input, Checkbox, Select } from "antd";
 import { useState, useEffect } from "react";
 
 export default function Drivers() {
+    console.log(process.env.HOSTNAME_URI);
     const [selectedName, setSelectedName] = useState("");
     const [selectedCompany, setSelectedCompany] = useState("Vinko");
 
     useEffect(() => {
         console.log(selectedCompany);
     }, [selectedCompany]);
+
+    console.log(process.env.HOSTNAME_URI);
 
     const [modal1Open, setModal1Open] = useState(false);
 
