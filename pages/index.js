@@ -27,35 +27,35 @@ import {
 } from "antd";
 
 export default function Home(props) {
-    // const [drivers, setDrivers] = useState([]);
-    // const [driver, setDriver] = useState("");
-    // const [company, setCompany] = useState("Vinko");
-    // const [week, setWeek] = useState(30);
-    // const [modal2Open, setModal2Open] = useState(false);
+    const [drivers, setDrivers] = useState([]);
+    const [driver, setDriver] = useState("");
+    const [company, setCompany] = useState("Vinko");
+    const [week, setWeek] = useState(30);
+    const [modal2Open, setModal2Open] = useState(false);
 
-    // const [startDate, setStartDate] = useState("");
-    // const [endDate, setEndDate] = useState("");
-    // const [startTime, setStartTime] = useState("");
-    // const [endTime, setEndTime] = useState("");
+    const [startDate, setStartDate] = useState("");
+    const [endDate, setEndDate] = useState("");
+    const [startTime, setStartTime] = useState("");
+    const [endTime, setEndTime] = useState("");
 
-    // useEffect(() => {
-    //     setDrivers(
-    //         props.value
-    //             .filter((obj) => obj.companyName === company)
-    //             .map((obj, index) => {
-    //                 return {
-    //                     key: +index + 1,
-    //                     name: obj.name,
-    //                     start: obj.startDates[+week - 1].date
-    //                         ? `${formatDate(obj.startDates[+week - 1].date)} ${obj.startDates[+week - 1].time}`
-    //                         : obj.startDates[+week - 1].date,
-    //                     end: obj.endDates[+week - 1].date
-    //                         ? `${formatDate(obj.endDates[+week - 1].date)} ${obj.endDates[+week - 1].time}`
-    //                         : obj.endDates[+week - 1].date,
-    //                 };
-    //             })
-    //     );
-    // }, [company, week]);
+    useEffect(() => {
+        setDrivers(
+            props.value
+                .filter((obj) => obj.companyName === company)
+                .map((obj, index) => {
+                    return {
+                        key: +index + 1,
+                        name: obj.name,
+                        start: obj.startDates[+week - 1].date
+                            ? `${formatDate(obj.startDates[+week - 1].date)} ${obj.startDates[+week - 1].time}`
+                            : obj.startDates[+week - 1].date,
+                        end: obj.endDates[+week - 1].date
+                            ? `${formatDate(obj.endDates[+week - 1].date)} ${obj.endDates[+week - 1].time}`
+                            : obj.endDates[+week - 1].date,
+                    };
+                })
+        );
+    }, [company, week]);
 
     const columns = [
         {
@@ -154,7 +154,7 @@ export default function Home(props) {
             </Head>
             <Header />
             <main className="max-w-screen-xl mx-auto mt-16">
-                {/* <p>{company}</p>
+                {/* <p>{company}</p> */}
                 <section className="flex gap-2">
                     <Select
                         showSearch
@@ -225,7 +225,7 @@ export default function Home(props) {
                     Experiment
                 </Button> */}
             </main>
-            {/* <Modal
+            <Modal
                 title={`Edit Schedule: ${driver}`}
                 centered
                 open={modal2Open}
@@ -315,18 +315,18 @@ export default function Home(props) {
                         />
                     </div>
                 </div>
-            </Modal> */}
+            </Modal>
         </>
     );
 }
 
-// export async function getServerSideProps() {
-//     const response = await fetch("http://localhost:3000/api/get-driver");
-//     const value = await response.json();
+export async function getServerSideProps() {
+    const response = await fetch("http://localhost:3000/api/get-driver");
+    const value = await response.json();
 
-//     return {
-//         props: {
-//             value,
-//         },
-//     };
-// }
+    return {
+        props: {
+            value,
+        },
+    };
+}
