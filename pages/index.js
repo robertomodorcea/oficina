@@ -47,10 +47,14 @@ export default function Home(props) {
                         key: +index + 1,
                         name: obj.name,
                         start: obj.startDates[+week - 1].date
-                            ? `${formatDate(obj.startDates[+week - 1].date)} ${obj.startDates[+week - 1].time}`
+                            ? `${formatDate(obj.startDates[+week - 1].date)} ${
+                                  obj.startDates[+week - 1].time
+                              }`
                             : obj.startDates[+week - 1].date,
                         end: obj.endDates[+week - 1].date
-                            ? `${formatDate(obj.endDates[+week - 1].date)} ${obj.endDates[+week - 1].time}`
+                            ? `${formatDate(obj.endDates[+week - 1].date)} ${
+                                  obj.endDates[+week - 1].time
+                              }`
                             : obj.endDates[+week - 1].date,
                     };
                 })
@@ -193,37 +197,6 @@ export default function Home(props) {
                     dataSource={drivers}
                     pagination={false}
                 />
-                {/* <Button
-                    className="bg-blue-500 mt-10"
-                    type="primary"
-                    onClick={() => {
-                        const updateDriver = async () => {
-                            try {
-                                const response = await fetch(
-                                    "http://localhost:3000/api/update-driver",
-                                    {
-                                        method: "POST",
-                                        headers: {
-                                            "Content-Type": "application/json",
-                                        },
-                                        body: JSON.stringify({}),
-                                    }
-                                );
-
-                                if (!response.ok) {
-                                    throw new Error("Failed to update driver.");
-                                }
-
-                                console.log("Driver updated successfully!");
-                            } catch (error) {
-                                console.error(error);
-                            }
-                        };
-                        updateDriver();
-                    }}
-                >
-                    Experiment
-                </Button> */}
             </main>
             <Modal
                 title={`Edit Schedule: ${driver}`}
@@ -233,23 +206,20 @@ export default function Home(props) {
                 onOk={() => {
                     const updateDriver = async () => {
                         try {
-                            const response = await fetch(
-                                "http://localhost:3000/api/update-driver",
-                                {
-                                    method: "POST",
-                                    headers: {
-                                        "Content-Type": "application/json",
-                                    },
-                                    body: JSON.stringify({
-                                        name: driver,
-                                        startDate,
-                                        startTime,
-                                        endDate,
-                                        endTime,
-                                        week,
-                                    }),
-                                }
-                            );
+                            const response = await fetch("/api/update-driver", {
+                                method: "POST",
+                                headers: {
+                                    "Content-Type": "application/json",
+                                },
+                                body: JSON.stringify({
+                                    name: driver,
+                                    startDate,
+                                    startTime,
+                                    endDate,
+                                    endTime,
+                                    week,
+                                }),
+                            });
 
                             if (!response.ok) {
                                 throw new Error("Failed to update driver.");
@@ -321,7 +291,7 @@ export default function Home(props) {
 }
 
 export async function getServerSideProps() {
-    const response = await fetch("http://localhost:3000/api/get-driver");
+    const response = await fetch("/api/get-driver");
     const value = await response.json();
 
     return {
