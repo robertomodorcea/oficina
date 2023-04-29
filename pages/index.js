@@ -206,7 +206,7 @@ export default function Home(props) {
                 onOk={() => {
                     const updateDriver = async () => {
                         try {
-                            const response = await fetch("/api/update-driver", {
+                            const response = await fetch("https://oficina-rho.vercel.app/api/update-driver", {
                                 method: "POST",
                                 headers: {
                                     "Content-Type": "application/json",
@@ -291,7 +291,7 @@ export default function Home(props) {
 }
 
 export async function getServerSideProps() {
-    const response = await fetch("/api/get-driver");
+    const response = await fetch("https://oficina-rho.vercel.app/api/get-driver");
     const value = await response.json();
 
     return {
