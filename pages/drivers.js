@@ -54,7 +54,7 @@ export default function Drivers() {
                         setModal1Open(false);
                         const saveDriver = async () => {
                             try {
-                                const response = await fetch(`${process.env.HOSTNAME_URI}api/new-driver`, {
+                                const response = await fetch(`/api/new-driver`, {
                                     method: 'POST',
                                     headers: {
                                         'Content-Type': 'application/json'
