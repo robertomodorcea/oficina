@@ -290,9 +290,11 @@ export default function Home(props) {
     );
 }
 
-export async function getServerSideProps() {
+export async function getServerSideProps () {
     const response = await fetch("https://oficina-rho.vercel.app/api/get-driver");
     const value = await response.json();
+
+    console.log('Something');
 
     return {
         props: {
